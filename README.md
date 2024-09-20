@@ -44,7 +44,7 @@ To evaluate the similarity of two texts, we can  find the longest common subsequ
 if $d$ is the Levenshtein distance of the two texts and $l$ is the length of the longest text, then we estimate the similarity by $(l - d) / l$.
 
 The implementation of the Levenshtein distance can lead to an inefficient (exponential?) algorithm. We shall use the iterative approach, as suggested [here](https://en.wikipedia.org/wiki/Levenshtein_distance).
-[Here](https://www.baeldung.com/java-levenshtein-distance), too, we find an implementation.
+[Here](https://www.baeldung.com/java-levenshtein-distance) and [here](https://www.analyticsvidhya.com/blog/2021/02/a-simple-guide-to-metrics-for-calculating-string-similarity/) we find discussions and implementations.
 
 ### Run
 
