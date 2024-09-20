@@ -21,6 +21,23 @@ Still, as a programming exercise, assume that we are interested in a non-statist
 
 ## Solution 1
 
+Consider the [Longest Common Subsequence](https://en.wikipedia.org/wiki/Longest_common_subsequence) problem.
+
+To evaluate the similarity of two texts, we can  find the longest common subsequence and compare it to the longest of the two texts:
+if $lcs$ is the length of the longest common subsequence and $l$ is the length of the longest text, then we estimate the similarity by $lcs / l$.
+
+We can implement the LCS algorithm as suggested [here](https://en.wikipedia.org/wiki/Longest_common_subsequence):
+1. we build the longest common subsequence matrix first;
+2. we backtrack the sequences, using the matrix to reconstruct the longest common subsequence.
+
+### Run
+
+There is a classic Java application in `emailsimilarity.similarity.lcs` named `LCSSimilarityApp`. 
+
+Otherwise, there is also the test `EmailLCSSimilarityTest`.
+
+## Solution 2
+
 We first have to provide a meaning to "text similarity" which allows us to implement it.
 
 Since this is a simple task, we provide a simplified, questionable definition.
@@ -64,13 +81,8 @@ In other words (using the notation above):
 - we sum all these word-to-word similarities into $s$;
 - we sum $c + s$ and we divide by $l$.
 
-## Solution 2
+### Run
 
-Consider the [Longest Common Subsequence](https://en.wikipedia.org/wiki/Longest_common_subsequence) problem.
+There is a classic Java application in `emailsimilarity.similarity.text` named `TextSimilarityApp`.
 
-To evaluate the similarity of two texts, we can  find the longest common subsequence and compare it to the longest of the two texts:
-if $lcs$ is the length of the longest common subsequence and $l$ is the length of the longest text, then we estimate the similarity by $lcs / l$.
-
-We can implement the LCS algorithm as suggested [here](https://en.wikipedia.org/wiki/Longest_common_subsequence):
-1. we build the longest common subsequence matrix first;
-2. we backtrack the sequences, using the matrix to reconstruct the longest common subsequence.
+Otherwise, there is also the test `EmailTextSimilarityTest`.

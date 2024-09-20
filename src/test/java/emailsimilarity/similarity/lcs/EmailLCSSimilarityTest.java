@@ -1,17 +1,19 @@
-package emailsimilarity.text;
+package emailsimilarity.similarity.lcs;
 
-import org.junit.Test;
 import emailsimilarity.csv.CsvReader;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EmailSimilarityTest {
+import static org.junit.Assert.assertTrue;
+
+public class EmailLCSSimilarityTest {
 
     private CsvReader reader = new CsvReader(";");
-    private TextSimilarityMeasurer measurer = new TextSimilarityMeasurer();
+    private LCSSimilarityMeasurer measurer = new LCSSimilarityMeasurer();
 
 
     @Test
@@ -23,9 +25,6 @@ public class EmailSimilarityTest {
         for (List<String> row : textsToEdit) {
             textToIndex.put(row.get(0), textsToEdit.indexOf(row));
         }
-        //for (Map.Entry<String, Integer> entry : textToIndex.entrySet()) {
-        //    System.out.println(entry.getValue() + ": " + entry.getKey());
-        //}
         for (List<String> row : textsToEdit) {
             texts.add(row.get(0));
         }
@@ -34,12 +33,11 @@ public class EmailSimilarityTest {
         maxSimilarities.forEach((k, v) -> {
             maxIndexed.put(textToIndex.get(k), v);
         });
-        //System.out.println(maxIndexed);
 
-        assert maxIndexed.get(0) > 0.8;
-        assert maxIndexed.get(1) > 0.8;
-        assert maxIndexed.get(2) > 0.8;
-        assert maxIndexed.get(3) < 0.5;
-        assert maxIndexed.get(4) < 0.5;
+        assertTrue(maxIndexed.get(0) > 0.8);
+        assertTrue(maxIndexed.get(1) > 0.8);
+        assertTrue(maxIndexed.get(2) > 0.8);
+        assertTrue(maxIndexed.get(3) < 0.5);
+        assertTrue(maxIndexed.get(4) < 0.5);
     }
 }

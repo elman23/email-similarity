@@ -1,6 +1,6 @@
-package emailsimilarity.lcs;
+package emailsimilarity.similarity.lcs;
 
-import emailsimilarity.SimilarityMeasurer;
+import emailsimilarity.similarity.SimilarityMeasurer;
 
 public class LCSSimilarityMeasurer extends SimilarityMeasurer {
 

@@ -1,6 +1,6 @@
-package emailsimilarity.text;
+package emailsimilarity.similarity.text;
 
-import emailsimilarity.SimilarityMeasurer;
+import emailsimilarity.similarity.SimilarityMeasurer;
 
 import java.util.*;
 

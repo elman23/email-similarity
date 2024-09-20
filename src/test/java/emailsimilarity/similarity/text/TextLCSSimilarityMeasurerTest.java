@@ -1,4 +1,4 @@
-package emailsimilarity.text;
+package emailsimilarity.similarity.text;
 
 import org.junit.Test;
 
@@ -7,7 +7,6 @@ import java.util.*;
 public class TextLCSSimilarityMeasurerTest {
 
     private final TextSimilarityMeasurer measurer = new TextSimilarityMeasurer();
-
 
     @Test
     public void textDistanceTest() {
@@ -34,15 +33,11 @@ public class TextLCSSimilarityMeasurerTest {
         for (String row : textsToEdit) {
             textToIndex.put(row, textsToEdit.indexOf(row));
         }
-        //for (Map.Entry<String, Integer> entry : textToIndex.entrySet()) {
-        //    System.out.println(entry.getValue() + ": " + entry.getKey());
-        //}
         Map<String, Double> maxSimilarities = measurer.maxSimilarity(textsToEdit);
         Map<Integer, Double> maxIndexed = new HashMap<>();
         maxSimilarities.forEach((k, v) -> {
             maxIndexed.put(textToIndex.get(k), v);
         });
-        //System.out.println(maxIndexed);
 
         assert maxIndexed.get(0) == 1.0;
         assert maxIndexed.get(1) == 1.0;

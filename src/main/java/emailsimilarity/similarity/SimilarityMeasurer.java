@@ -1,4 +1,4 @@
-package emailsimilarity;
+package emailsimilarity.similarity;
 
 import java.util.*;
 

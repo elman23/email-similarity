@@ -1,4 +1,4 @@
-package emailsimilarity.lcs;
+package emailsimilarity.similarity.lcs;
 
 public class LCSFinder {
 

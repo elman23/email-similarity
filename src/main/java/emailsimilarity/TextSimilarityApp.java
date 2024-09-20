@@ -1,6 +1,8 @@
-package emailsimilarity.text;
+package emailsimilarity;
 
 import emailsimilarity.csv.CsvReader;
+import emailsimilarity.similarity.SimilarityMeasurer;
+import emailsimilarity.similarity.text.TextSimilarityMeasurer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,19 +11,17 @@ import java.util.Map;
 
 public class TextSimilarityApp {
 
+    private static String fileName = "emails.csv";
+    private static CsvReader reader = new CsvReader(";");
+    private static SimilarityMeasurer measurer = new TextSimilarityMeasurer();
+
     public static void main(String[] args) {
 
-        CsvReader reader = new CsvReader(";");
-        TextSimilarityMeasurer measurer = new TextSimilarityMeasurer();
-
-        List<List<String>> textsToEdit = reader.readCsv("emails.csv");
+        List<List<String>> textsToEdit = reader.readCsv(fileName);
         List<String> texts = new ArrayList<>();
         Map<String, Integer> textToIndex = new HashMap<>();
         for (List<String> row : textsToEdit) {
             textToIndex.put(row.get(0), textsToEdit.indexOf(row));
-        }
-        for (Map.Entry<String, Integer> entry : textToIndex.entrySet()) {
-            System.out.println(entry.getValue() + ": " + entry.getKey());
         }
         for (List<String> row : textsToEdit) {
             texts.add(row.get(0));
@@ -31,6 +31,9 @@ public class TextSimilarityApp {
         maxSimilarities.forEach((k, v) -> {
             maxIndexed.put(textToIndex.get(k), v);
         });
-        System.out.println(maxIndexed);
+
+        for (Map.Entry<String, Double> e : maxSimilarities.entrySet()) {
+            System.out.println("[" + e.getKey() + "] spam" + ": " + (e.getValue() > 0.5));
+        }
     }
 }

@@ -1,20 +1,17 @@
-package emailsimilarity.lcs;
+package emailsimilarity.similarity.text;
 
-import emailsimilarity.csv.CsvReader;
-import emailsimilarity.text.TextSimilarityMeasurer;
 import org.junit.Test;
+import emailsimilarity.csv.CsvReader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertTrue;
-
-public class EmailSimilarityTest {
+public class EmailTextSimilarityTest {
 
     private CsvReader reader = new CsvReader(";");
-    private LCSSimilarityMeasurer measurer = new LCSSimilarityMeasurer();
+    private TextSimilarityMeasurer measurer = new TextSimilarityMeasurer();
 
 
     @Test
@@ -39,10 +36,10 @@ public class EmailSimilarityTest {
         });
         //System.out.println(maxIndexed);
 
-        assertTrue(maxIndexed.get(0) > 0.8);
-        assertTrue(maxIndexed.get(1) > 0.8);
-        assertTrue(maxIndexed.get(2) > 0.8);
-        assertTrue(maxIndexed.get(3) < 0.5);
-        assertTrue(maxIndexed.get(4) < 0.5);
+        assert maxIndexed.get(0) > 0.8;
+        assert maxIndexed.get(1) > 0.8;
+        assert maxIndexed.get(2) > 0.8;
+        assert maxIndexed.get(3) < 0.5;
+        assert maxIndexed.get(4) < 0.5;
     }
 }

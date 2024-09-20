@@ -1,18 +1,19 @@
 package emailsimilarity;
 
 import emailsimilarity.csv.CsvReader;
-import emailsimilarity.text.TextSimilarityMeasurer;
+import emailsimilarity.similarity.SimilarityMeasurer;
+import emailsimilarity.similarity.lcs.LCSSimilarityMeasurer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EmailSimilarityApp {
+public class LCSSimilarityApp {
 
     private static String fileName = "emails.csv";
     private static CsvReader reader = new CsvReader(";");
-    private static SimilarityMeasurer measurer = new TextSimilarityMeasurer();
+    private static SimilarityMeasurer measurer = new LCSSimilarityMeasurer();
 
     public static void main(String[] args) {
 
