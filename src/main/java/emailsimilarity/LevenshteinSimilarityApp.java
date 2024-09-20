@@ -1,26 +1,24 @@
-package emailsimilarity.similarity.lcs;
+package emailsimilarity;
 
 import emailsimilarity.csv.CsvReader;
 import emailsimilarity.similarity.SimilarityMeasurer;
-import org.junit.Test;
+import emailsimilarity.similarity.lcs.LCSSimilarityMeasurer;
+import emailsimilarity.similarity.levenshtein.LevenshteinSimilarityMeasurer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertTrue;
+public class LevenshteinSimilarityApp {
 
-public class EmailLCSSimilarityTest {
+    private static String fileName = "emails.csv";
+    private static CsvReader reader = new CsvReader(";");
+    private static SimilarityMeasurer measurer = new LevenshteinSimilarityMeasurer();
 
-    private CsvReader reader = new CsvReader(";");
-    private SimilarityMeasurer measurer = new LCSSimilarityMeasurer();
+    public static void main(String[] args) {
 
-
-    @Test
-    public void maxSimilariyTest() {
-
-        List<List<String>> textsToEdit = reader.readCsv("emails.csv");
+        List<List<String>> textsToEdit = reader.readCsv(fileName);
         List<String> texts = new ArrayList<>();
         Map<String, Integer> textToIndex = new HashMap<>();
         for (List<String> row : textsToEdit) {
@@ -35,10 +33,8 @@ public class EmailLCSSimilarityTest {
             maxIndexed.put(textToIndex.get(k), v);
         });
 
-        assertTrue(maxIndexed.get(0) > 0.8);
-        assertTrue(maxIndexed.get(1) > 0.8);
-        assertTrue(maxIndexed.get(2) > 0.8);
-        assertTrue(maxIndexed.get(3) < 0.5);
-        assertTrue(maxIndexed.get(4) < 0.5);
+        for (Map.Entry<String, Double> e : maxSimilarities.entrySet()) {
+            System.out.println("[" + e.getKey() + "] spam" + ": " + (e.getValue() > 0.5));
+        }
     }
 }

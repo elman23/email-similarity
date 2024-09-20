@@ -1,18 +1,20 @@
-package emailsimilarity.similarity.text;
+package emailsimilarity.similarity.levenshtein;
 
+import emailsimilarity.csv.CsvReader;
 import emailsimilarity.similarity.SimilarityMeasurer;
 import org.junit.Test;
-import emailsimilarity.csv.CsvReader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class EmailTextSimilarityTest {
+import static org.junit.Assert.assertTrue;
+
+public class EmailLevenshteinSimilarityTest {
 
     private CsvReader reader = new CsvReader(";");
-    private SimilarityMeasurer measurer = new TextSimilarityMeasurer();
+    private SimilarityMeasurer measurer = new LevenshteinSimilarityMeasurer();
 
 
     @Test
@@ -33,10 +35,10 @@ public class EmailTextSimilarityTest {
             maxIndexed.put(textToIndex.get(k), v);
         });
 
-        assert maxIndexed.get(0) > 0.8;
-        assert maxIndexed.get(1) > 0.8;
-        assert maxIndexed.get(2) > 0.8;
-        assert maxIndexed.get(3) < 0.5;
-        assert maxIndexed.get(4) < 0.5;
+        assertTrue(maxIndexed.get(0) > 0.8);
+        assertTrue(maxIndexed.get(1) > 0.8);
+        assertTrue(maxIndexed.get(2) > 0.8);
+        assertTrue(maxIndexed.get(3) < 0.5);
+        assertTrue(maxIndexed.get(4) < 0.5);
     }
 }
